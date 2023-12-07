@@ -1,6 +1,6 @@
 package com.protfolio.projetos.entities.enun;
 
-public enum StatusProjeto {
+public enum StatusEnum {
     EM_ANALISE,
     ANALISE_REALIZADA,
     ANALISE_APROVADA,

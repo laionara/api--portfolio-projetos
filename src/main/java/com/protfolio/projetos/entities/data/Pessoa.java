@@ -1,11 +1,16 @@
 package com.protfolio.projetos.entities.data;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity(name = "Pessoa")
+@Entity
 @Table(name = "pessoa")
+@Getter
+@Setter
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +22,6 @@ public class Pessoa {
     @Column(name = "cpf")
     private String cpf ;
     @Column(name = "funcionario")
-    private String funcionario;
+    private boolean funcionario;
 
 }
