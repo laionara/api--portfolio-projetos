@@ -1,5 +1,6 @@
 package com.protfolio.projetos.interactors;
 
+import com.protfolio.projetos.entities.data.Projeto;
 import com.protfolio.projetos.entities.dto.ProjetoDTO;
 import com.protfolio.projetos.entities.dto.ProjetoResponseDTO;
 import com.protfolio.projetos.entities.enun.StatusEnum;
@@ -53,5 +54,29 @@ public class ProjetoUseCase {
     public List<ProjetoResponseDTO> getProjetos() {
         return projetoResponseMapper.mapToListProjetoResponseDTO(projetoRepositorie.getProjetos());
 
+    }
+
+    public ProjetoResponseDTO alterar(Long id, ProjetoDTO projetoDTO) {
+        var projeto = projetoRepositorie.getProjetoById(id);
+        if(projeto.isEmpty()){
+            throw new BusinessException("Projeto não encontrado ");
+        }
+        return projetoResponseMapper.mapToProjetoResponseDTO(projetoRepositorie.alterar(buildProjeto(projeto.get(), projetoDTO)));
+
+    }
+
+    public Projeto buildProjeto(Projeto projeto, ProjetoDTO dto){
+        projeto.setNome(dto.nome());
+        projeto.setDescricao(dto.descricao());
+        projeto.setDataFim(dto.dataFim());
+        projeto.setDataPrevisaoFim(dto.dataPrevisaoFim());
+        projeto.setDataInicio(dto.dataInicio());
+
+        return projeto;
+
+    }
+
+    public ProjetoResponseDTO associarMembros(ProjetoDTO projetoDTO) {
+        return projetoResponseMapper.mapToProjetoResponseDTO(projetoRepositorie.associar(projetoDTO));
     }
 }

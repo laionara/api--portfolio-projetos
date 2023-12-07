@@ -1,5 +1,6 @@
 package com.protfolio.projetos.transportlayers;
 
+import com.protfolio.projetos.entities.dto.PessoaDTO;
 import com.protfolio.projetos.entities.dto.ProjetoDTO;
 import com.protfolio.projetos.entities.dto.ProjetoResponseDTO;
 import com.protfolio.projetos.interactors.ProjetoUseCase;
@@ -25,8 +26,24 @@ public class projetoController {
 
     }
 
+    @PostMapping(value = "/associar")
+    public ResponseEntity<ProjetoResponseDTO> associarMembros(@RequestBody ProjetoDTO projetoDTO, List<PessoaDTO> membros){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(projetoUseCase.associarMembros(projetoDTO));
+
+    }
+
+    @PutMapping(value = "/alterar/{id}")
+    public ResponseEntity<ProjetoResponseDTO> alterar(@PathVariable Long id, @RequestBody ProjetoDTO projetoDTO){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(projetoUseCase.alterar(id, projetoDTO));
+
+    }
+
     @GetMapping(value = "/consultar")
-    public ResponseEntity<List<ProjetoResponseDTO>> getProjeto(){
+    public ResponseEntity<List<ProjetoResponseDTO>> consultar(){
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(projetoUseCase.getProjetos());

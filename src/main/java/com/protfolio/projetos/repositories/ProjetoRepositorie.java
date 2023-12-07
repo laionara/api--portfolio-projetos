@@ -2,6 +2,7 @@ package com.protfolio.projetos.repositories;
 
 import com.protfolio.projetos.entities.data.Projeto;
 import com.protfolio.projetos.entities.dto.ProjetoDTO;
+import com.protfolio.projetos.entities.dto.ProjetoResponseDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,4 +18,9 @@ public interface ProjetoRepositorie {
     Optional<Projeto> getProjetoById(Long id);
 
     List<Projeto> getProjetos() ;
+
+    Projeto alterar(Projeto projeto);
+
+
+    Projeto associar(ProjetoDTO projetoDTO);
 }

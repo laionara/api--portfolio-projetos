@@ -53,4 +53,15 @@ public class ProjetoDataSource implements ProjetoRepositorie {
     public List<Projeto> getProjetos() {
         return projetoRepository.findAll();
     }
+
+    @Override
+    public Projeto alterar(Projeto projeto) {
+        return projetoRepository.save(projeto);
+
+    }
+
+    @Override
+    public Projeto associar(ProjetoDTO projetoDTO) {
+        return null;
+    }
 }
