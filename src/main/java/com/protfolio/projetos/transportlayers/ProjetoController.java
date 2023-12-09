@@ -7,18 +7,28 @@ import com.protfolio.projetos.interactors.ProjetoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("portfolio")
-public class projetoController {
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+@Controller
+public class ProjetoController {
+
+    @RequestMapping(value="/", method=GET)
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("index");
+        return mv;
+    }
     @Autowired
     private ProjetoUseCase projetoUseCase;
 
-    @PostMapping(value = "/cadastrar")
+    @PostMapping(value = {"/cadastrar"})
     public ResponseEntity<ProjetoResponseDTO> cadastrar(@RequestBody ProjetoDTO projetoDTO){
 
         return ResponseEntity.status(HttpStatus.CREATED)
